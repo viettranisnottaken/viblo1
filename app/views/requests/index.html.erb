@@ -1,0 +1,8 @@
+<% @requests.each do |n| %>
+  <h1><%= n.user.name %></h1>
+  <p><%= form_for(n.user, method: :patch) do |f| %>
+    <%= hidden_field_tag :user_id, n.user.id  %>
+    <%= f.submit "Convert" %>
+
+  <% end %></p>
+<% end %>

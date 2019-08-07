@@ -9,14 +9,13 @@
 	<tbody>
 		<% @requests.each do |n| %>
 		<tr>
-			<%= form_for(n.user, method: :patch) do |f| %>
+			<%= form_for(n, method: :patch, url: admin_request_path(n)) do |f| %>
 			<td><%= n.user.name %></td>
 			<td><%= hidden_field_tag :user_id, n.user.id  %></td>
-			<td><%= f.submit "Approve" %></td>
-			<td><%= f.submit "Reject" %></td>
+			<td><%= f.button "Approve", type: 'submit', name:"status", value: true %></td>
+			<td><%= f.button "Reject",type: 'submit', name: "status", value: false %></td>
 			<% end %>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-

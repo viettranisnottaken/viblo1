@@ -4,16 +4,16 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = Request.new 
+    @request = Request.new
   end
 
   def create
     current_user.requests.create!
     respond_to do |format|
-      if current_user.admin 
+      if current_user.admin || current_user.kind == "buyer"
         format.html {redirect_to admin_requests_path}
       else
-        format.html {redirect_to "https://tiki.vn/"}
+        format.html {redirect_to root_path}
         format.json
       end
     end

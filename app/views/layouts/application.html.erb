@@ -9,12 +9,21 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+        <% if logged_in? %>
+      <% if current_user.kind == "buyer" %>
+        <%= link_to "Become a seller", "/requests/new" %>
+      <% else %>
+        <h3>You are a seller</h3>
+      <% end %>
+    <% end %>
     <%= render 'layouts/header' %>
     <div class="container">
     <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
+
     <%= yield %>
+
     <div class="container">
     </div>
   </body>

@@ -1,6 +1,7 @@
 <%= form_for(@request) do |f| %>
-  <%= f.submit "Become a seller" %>
+<!--   <%= f.submit "Become a seller" %> -->
   <% if current_user.kind == "buyer" %>
-  <%= link_to "become a seller" %>
-  <% end %>
+  <%= f.submit "Become a seller" %>
+<!--   <%= link_to "become a seller" %>
+ -->  <% end %>
 <% end %>

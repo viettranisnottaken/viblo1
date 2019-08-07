@@ -10,11 +10,12 @@ class RequestsController < ApplicationController
   def create
     current_user.requests.create!
     respond_to do |format|
-      if current_user.admin 
+      if current_user.admin
         format.html {redirect_to admin_requests_path}
       else
-        format.html {redirect_to "https://tiki.vn/"}
+        format.html {redirect_to root_path}
         format.json
+        flash[:success] = "your request is being processed"
       end
     end
   end

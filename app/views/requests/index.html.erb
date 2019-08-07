@@ -1,8 +1,9 @@
 <% @requests.each do |n| %>
-  <h1><%= n.user.name %></h1>
-  <p><%= form_for(n.user, method: :patch) do |f| %>
-    <%= hidden_field_tag :user_id, n.user.id  %>
-    <%= f.submit "Convert" %>
-
-  <% end %></p>
+  <div style="border: 1px solid black">
+    <h1><%= n.user.name %></h1>
+    <p><%= form_for(n, method: :patch) do |f| %>
+      <%= f.button "Accept", name: :requested, value: "accepted" %>
+      <%= f.button "Reject", name: :requested, value: "rejected" %>
+    <% end %></p>
+  </div>
 <% end %>

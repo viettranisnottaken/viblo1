@@ -24,10 +24,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    request = Request.find(params[:id])
+    @user = request.user
     if @user.update_attribute(:reason, params[:user][:reason])
       @user.update_attribute(:requested, "rejected")
       redirect_to @user
+      request.delete
       flash[:success] = "done"
     else
       redirect_to requests_path

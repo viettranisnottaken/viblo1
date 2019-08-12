@@ -22,7 +22,6 @@ class RequestsController < ApplicationController
       request.delete
       redirect_to action: :index
     elsif request.user.requested == "not_yet_rejected"
-      request.delete
       redirect_to edit_user_path
     end
   end

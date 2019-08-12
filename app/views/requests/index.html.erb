@@ -3,7 +3,7 @@
     <h1><%= n.user.name %></h1>
     <p><%= form_for(n, method: :patch) do |f| %>
       <%= f.button "Accept", name: :requested, value: "accepted" %>
-      <%= f.button "Reject", name: :requested, value: "rejected" %>
+      <%= f.button "Reject", name: :requested, value: "not_yet_rejected" %>
     <% end %></p>
   </div>
 <% end %>

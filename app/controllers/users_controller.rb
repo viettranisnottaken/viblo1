@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
   def new
-    unless logged_in?
-      redirect_to login_path
-    end
     @user = User.new
   end
 
@@ -23,15 +20,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:user_id])
-    if @user.update_attribute(:kind, "seller")
+    @user = User.find(params[:id])
+    if @user.update_attribute(:reason, params[:user][:reason])
+      @user.update_attribute(:requested, "rejected")
       redirect_to @user
       flash[:success] = "done"
     else
-      redirect_to requests
+      redirect_to requests_path
       flash[:danger] = "not done"
     end
   end

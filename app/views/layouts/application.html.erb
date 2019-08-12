@@ -17,7 +17,7 @@
       <% elsif current_user.kind == "buyer" %>
         <% if current_user.requested == nil %>
           <%= link_to "become a seller", "/requests/new" %>
-        <% elsif current_user.requested == "pending" %>
+        <% elsif current_user.requested == "pending" || current_user.requested == "not_yet_rejected" %>
           <h3>Your request is being processed</h3>
         <% elsif current_user.requested == "rejected" %>
           <h3>You have been rejected</h3>

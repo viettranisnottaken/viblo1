@@ -15,14 +15,15 @@ class RequestsController < ApplicationController
   end
   def update
     request = Request.find(params[:id])
+    user = request.user
     request.user.update_attribute(:requested, params[:requested])
     if request.user.requested == "accepted"
       request.user.update_attribute(:kind, "seller")
       request.delete
       redirect_to action: :index
-    elsif request.user.requested == "rejected"
+    elsif request.user.requested == "not_yet_rejected"
       request.delete
-      redirect_to action: :index
+      redirect_to edit_user_path
     end
   end
 end
